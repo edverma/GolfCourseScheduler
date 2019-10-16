@@ -1,0 +1,97 @@
+ <div>
+  <div class="row">
+    <div class="col-1"></div>
+
+    <div class="col-10">
+      Start date for new schedule: <input [(ngModel)]="options.dateStrings[0]" type="date" class="form-control"
+                                          name="schedule-start-date" size="12" (change)="string2Date();">
+    </div>
+
+    <div class="col-2"></div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-2"></div>
+
+    <div class="col-8">
+      <div *ngIf="options.dateStrings[0]">
+        <form #scheduleForm="ngForm">
+          <table class="setScheduleTable">
+            <tr *ngFor="let dummy of ' '.repeat(7).split(''), let i = index">
+              <td>{{options.dateStrings[i]}}</td>
+              <td>
+                <table class="setScheduleOptionsTable">
+                  <tr>
+                    <td><input [(ngModel)]="options.shopAMbools[i]" name="shopAMbool{{i}}" type="checkbox"> Shop AM</td>
+                    <td><input [(ngModel)]="options.shopAMtimes[i]" name="shopAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                    <td><input [(ngModel)]="options.shopPMbools[i]" name="shopPMbool{{i}}" type="checkbox" checked> Shop PM</td>
+                    <td><input [(ngModel)]="options.shopPMtimes[i]" name="shopPMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                  </tr>
+
+                  <tr>
+                    <td><input [(ngModel)]="options.cartsAMbools[i]" name="cartsAMbool{{i}}" type="checkbox"> Carts AM</td>
+                    <td><input [(ngModel)]="options.cartsAMtimes[i]" name="cartsAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                    <td><input [(ngModel)]="options.cartsPMbools[i]" name="cartsPMbool{{i}}" type="checkbox"checked> Carts PM</td>
+                    <td><input [(ngModel)]="options.cartsPMtimes[i]" name="cartsPMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                  </tr>
+
+                  <tr>
+                    <td><input [(ngModel)]="options.rangeAMbools[i]" name="rangeAMbool{{i}}" type="checkbox"> Range AM</td>
+                    <td><input [(ngModel)]="options.rangeAMtimes[i]" name="rangeAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                    <td><input [(ngModel)]="options.rangePMbools[i]" name="rangePMbool{{i}}" type="checkbox"> Range PM</td>
+                    <td><input [(ngModel)]="options.rangePMtimes[i]" name="rangePMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                  </tr>
+
+                  <tr>
+                    <td><input [(ngModel)]="options.rrAMbools[i]" name="rrAMbool{{i}}" type="checkbox"> RR AM</td>
+                    <td><input [(ngModel)]="options.rrAMtimes[i]" name="rrAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                    <td><input [(ngModel)]="options.rrPMbools[i]" name="rrPMbool{{i}}" type="checkbox"> RR PM</td>
+                    <td><input [(ngModel)]="options.rrPMtimes[i]" name="rrPMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                  </tr>
+
+                  <tr>
+                    <td><input [(ngModel)]="options.starterAMbools[i]" name="starterAMbool{{i}}" type="checkbox"> Starter AM</td>
+                    <td><input [(ngModel)]="options.starterAMtimes[i]" name="starterAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                    <td><input [(ngModel)]="options.starterPMbools[i]" name="starterPMbool{{i}}" type="checkbox"> Starter PM</td>
+                    <td><input [(ngModel)]="options.starterPMtimes[i]" name="starterPMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                  </tr>
+
+                  <tr>
+                    <td><input [(ngModel)]="options.tcAMbools[i]" name="tcAMbool{{i}}" type="checkbox"> Tournament Carts AM</td>
+                    <td>
+                      <input [(ngModel)]="options.tcAMtimes[i]" name="tcAMtime{{i}}" class="form-control-sm" type="time" size="9">
+                      <input [(ngModel)]="options.tcAMamounts[i]" name="tcAMamount{{i}}" class="form-control-sm" type="number" size="9" placeholder="Amount">
+                    </td>
+                    <td><input [(ngModel)]="options.tcPMbools[i]" name="tcPMbool{{i}}" type="checkbox"> Tournament Carts PM</td>
+                    <td>
+                      <input [(ngModel)]="options.tcPMtimes[i]" name="tcPMtime{{i}}" class="form-control-sm" type="time" size="9">
+                      <input [(ngModel)]="options.tcPMamounts[i]" name="tcPMamount{{i}}" class="form-control-sm" type="number" size="9" placeholder="Amount">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Event Name: <input [(ngModel)]="options.eventNames[i]" name="eventName{{i}}" class="form-control-sm" type="text"
+                                           placeholder="leave blank if none"></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-10"></div>
+            <div class="col-2">
+              <button class="btn btn-primary" type="submit">Generate Schedule</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+ </div>
