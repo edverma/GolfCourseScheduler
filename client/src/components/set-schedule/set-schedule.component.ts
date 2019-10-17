@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import * as jquery from '../../../node_modules/jquery/dist/jquery.slim.js';
 import * as bootstrap from '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
-import { ScheduleOptions } from './ScheduleFormValues';
+import { ScheduleRequirements } from './ScheduleRequirements';
+
+import { SetScheduleService } from '../../services/setSchedule.service';
 
 @Component({
   selector: 'set-schedule',
@@ -12,13 +14,12 @@ import { ScheduleOptions } from './ScheduleFormValues';
 })
 
 export class SetScheduleComponent implements OnInit{
-  options: ScheduleOptions;
+  options: ScheduleRequirements;
 
-  constructor() { }
+  constructor(private setScheduleService: SetScheduleService) { }
 
   ngOnInit() {
-    const vm = this;
-    vm.options = new ScheduleOptions();
+    this.options = new ScheduleRequirements();
   }
 
   string2Date(): void{
@@ -35,5 +36,10 @@ export class SetScheduleComponent implements OnInit{
 
     options.dateStrings[0] = options.dateDates[0].toString();
     options.dateStrings[0] = options.dateStrings[0].substr(0,15);
+  }
+
+  onSubmit() {
+    let optionsJSON = JSON.stringify( this.options );
+    this.setScheduleService.post( optionsJSON );
   }
 }
