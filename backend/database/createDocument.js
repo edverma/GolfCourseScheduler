@@ -1,4 +1,4 @@
-exports.createDocuments = function createDocuments( scheduleRequirementsJSON, callback ) {
+exports.createDocument = function createDocument(scheduleRequirementsJSON, callback ) {
     const ScheduleRequirementsMongo = require('./mongoModels.js').Models.ScheduleRequirements;
 
     let scheduleRequirementsDocument = new ScheduleRequirementsMongo( scheduleRequirementsJSON );

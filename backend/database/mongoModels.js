@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//TODO: need to set this up different. Should have one 2D array
+// 'neededShifts: [ [string shiftType, string shiftTimeRange, boolean needed] ]'
 let scheduleRequirementsSchema = new Schema({
     dateStrings: [String],
     dateDates: [Date],
