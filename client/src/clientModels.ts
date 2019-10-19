@@ -1,6 +1,44 @@
-export class ScheduleRequirements {
+enum Tenant {
+  UGA
+}
 
-  //TODO: change these variable names to match models.js
+enum ShiftType {
+  SHOP,
+  CARTS,
+  RANGE,
+  RANGE_REGISTER,
+  STARTER,
+  TOURNAMENT_CARTS
+}
+
+enum ShiftTime {
+  AM,
+  PM
+}
+
+export class TenantShift {
+  tenant: Tenant;
+  type: ShiftType;
+  time: ShiftTime;
+}
+
+export class ScheduleShift {
+  shift: TenantShift;
+  date: Date;
+  time: string;
+  amount: Number;
+  needed: boolean;
+}
+
+export class ScheduleRequirementsImproved {
+  dateStrings: string [] = [];
+  dateDates: Date[] = [];
+  shifts: ScheduleShift[] = [];
+  eventNames: string[] = [];
+}
+
+
+export class ScheduleRequirements {
   dateStrings: string [] = [];
   dateDates: Date[] = [];
 

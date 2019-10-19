@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as jquery from '../../../node_modules/jquery/dist/jquery.slim.js';
 import * as bootstrap from '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
-import { ScheduleRequirements } from './ScheduleRequirements';
+import { ScheduleRequirements } from '../../clientModels';
 
 import { SetScheduleService } from '../../services/setSchedule.service';
 
