@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 
+const initData = require('./init_data.js');
 const url = "mongodb://127.0.0.1:27017/scheduler-database";
 const server = '127.0.0.1:27017';
 const database = 'scheduler-database';
@@ -16,20 +17,32 @@ class Database {
             if (err) {
                 console.error('Database creation error: ', err)
             }
-            console.log('Database created');
-
-            db.close();
+            initData( this, () => {
+                console.log('Data initialized');
+                db.close();
+            });
         });
     }
 
     _connect() {
-        mongoose.connect(`mongodb://${server}/${database}`, { useNewUrlParser: true })
+        mongoose.connect(url, { useNewUrlParser: true })
             .then(() => {
                 console.log('Database connection successful');
             })
             .catch(err => {
                 console.error('Database connection error');
             });
+    }
+
+    createDocument( jsonObj, schema, callback ) {
+        let document = new schema( jsonObj );
+        document.save( (err) => {
+            if(err){
+                console.log(err);
+            }
+        });
+
+        callback();
     }
 }
 

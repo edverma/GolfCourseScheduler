@@ -1,3 +1,4 @@
+//TODO: use enums.js file
 enum Tenant {
   UGA
 }
