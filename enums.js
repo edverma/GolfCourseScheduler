@@ -15,5 +15,15 @@ module.exports = {
     ShiftTime: {
         AM: 'AM',
         PM: 'PM'
+    },
+
+    UserRole: {
+        BASIC: 'Basic',
+        ADMIN: 'Admin'
+    },
+
+    UserType: {
+        EMPLOYEE: 'Employee',
+        MANAGER: 'Manager'
     }
 };

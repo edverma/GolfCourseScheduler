@@ -15,6 +15,7 @@ module.exports = {
         });
     },
 
+    //TODO: choose schedule!
     postRequirements: function(app) {
         app.post('/set-schedule/days', ( req, res ) => {
             db.createDocument( req.body, ScheduleRequirementsImproved, () => {
