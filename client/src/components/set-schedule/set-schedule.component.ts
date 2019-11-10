@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as jquery from '../../../node_modules/jquery/dist/jquery.slim.js';
 import * as bootstrap from '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
-import { ScheduleRequirements } from '../../clientModels';
+import {ScheduleRequirementsImproved, ScheduleShift} from '../../clientModels';
 
 import { SetScheduleService } from '../../services/setSchedule.service';
 
@@ -14,12 +14,20 @@ import { SetScheduleService } from '../../services/setSchedule.service';
 })
 
 export class SetScheduleComponent implements OnInit{
-  options: ScheduleRequirements;
+  options:  ScheduleRequirementsImproved;
+  shifts: ScheduleShift[];
 
   constructor(private setScheduleService: SetScheduleService) { }
 
+  //TODO: Get ScheduleShift instances for tenant and add them to ScheduleRequirementsImproved instance
   ngOnInit() {
-    this.options = new ScheduleRequirements();
+    this.options = new ScheduleRequirementsImproved;
+    this.setScheduleService.getRequirements()
+      .subscribe({
+        next(data) { this.shifts = data; },
+        error(err) { console.error(err); },
+        complete() { }
+      });
   }
 
   string2Date(): void{
@@ -40,6 +48,6 @@ export class SetScheduleComponent implements OnInit{
 
   onSubmit() {
     let optionsJSON = JSON.stringify( this.options );
-    this.setScheduleService.post( optionsJSON );
+    this.setScheduleService.postRequirements( optionsJSON );
   }
 }

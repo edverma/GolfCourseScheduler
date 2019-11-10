@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const db = require('./database/database.js');
 const ScheduleRequirements = require('./database/mongoModels.js').Models.ScheduleRequirements;
+const ScheduleShift = require('./database/mongoModels.js').Models.ScheduleShift;
 
 const ShiftChooser = require('./ShiftChooser.js').ShiftChooser;
 
@@ -23,4 +24,15 @@ app.post('/set-schedule', ( req, res ) => {
             });
     });
 });
+
+app.get('/set-schedule/schedule-shift', ( req, res ) => {
+   ScheduleShift.find({}, null, { sort: 'shift.order' }, (err, docs) => {
+       if (err != null) {
+           console.error(err);
+           return;
+       }
+       res.send(docs);
+   });
+});
+
 app.listen(port, () => console.log(`Golf Course Scheduler Server listening on port ${port}!`));

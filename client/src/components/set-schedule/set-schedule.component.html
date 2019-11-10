@@ -18,7 +18,7 @@
     <div class="col-8">
       <div *ngIf="options.dateStrings[0]">
         <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
-          <table class="setScheduleTable">
+          <table class="setScheduleTable"> <!-- TODO: set up form now that new models are on component -->
             <tr *ngFor="let dummy of ' '.repeat(7).split(''), let i = index">
               <td>{{options.dateStrings[i]}}</td>
               <td>

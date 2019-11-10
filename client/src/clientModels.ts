@@ -1,26 +1,12 @@
-//TODO: use enums.js file
-enum Tenant {
-  UGA
-}
-
-enum ShiftType {
-  SHOP,
-  CARTS,
-  RANGE,
-  RANGE_REGISTER,
-  STARTER,
-  TOURNAMENT_CARTS
-}
-
-enum ShiftTime {
-  AM,
-  PM
-}
+import {Tenant} from "../../enums.js";
+import {ShiftType} from "../../enums.js";
+import {ShiftTime} from "../../enums.js";
 
 export class TenantShift {
   tenant: Tenant;
   type: ShiftType;
   time: ShiftTime;
+  order: Number;
 }
 
 export class ScheduleShift {

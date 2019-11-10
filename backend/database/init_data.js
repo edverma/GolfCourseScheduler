@@ -1,19 +1,32 @@
-const TenantShift = require('./mongoModels').Models.TenantShift;
+const ScheduleShift = require('./mongoModels').Models.ScheduleShift;
+const initializeScheduleShifts = require('./initial_data/initialScheduleShifts.js');
 
 //check for if a certain collection exists or has data, if not add initial data
 module.exports = function initData(db, callback) {
-    if ( ! tenantShiftsExist() ) {
-        const initialTenantShifts = require('./initial_data/initialTenantShifts');
-        for ( let i = 0; i < initialTenantShifts.length; i++ ) {
-            db.createDocument( initialTenantShifts[i], TenantShift, () => { } );
-        }
-    }
+    initializeScheduleShiftData(db);
+
     callback();
 };
 
-function tenantShiftsExist() {
-    TenantShift.count( (err, count) => {
-        if ( count == 0 ) return true;
-        return false;
+function initializeScheduleShiftData(db) {
+    scheduleShiftsInitialized( (count) => {
+        if (count == 0) {
+            let initialScheduleShifts = initializeScheduleShifts();
+            for (let i = 0; i < initialScheduleShifts.length; i++) {
+                db.createDocument(initialScheduleShifts[i], ScheduleShift, (err) => {
+                    if (err != null) {
+                        console.log(err);
+                    }
+                });
+            }
+        }
+    });
+}
+
+function scheduleShiftsInitialized(callback) {
+    ScheduleShift.countDocuments( {}, (err, count) => {
+        if ( count == 0 ) {
+            callback(count)
+        }
     });
 }

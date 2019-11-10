@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 let tenantShiftSchema = new Schema ({
     tenant: Number,
     type: Number,
-    time: Number
+    time: Number,
+    order: Number
 });
 
 let scheduleShiftSchema = new Schema ({
     shift: tenantShiftSchema,
-    date: Date,
     time: String,
     amount: Number,
-    needed: Boolean,
+    needed: Boolean
 });
 
 let scheduleRequirementsImprovedSchema = new Schema({
@@ -60,8 +60,9 @@ let scheduleRequirementsSchema = new Schema({
 
 class MongoModels {
     constructor() {
-        this.TenantShift = mongoose.model('tenant-shift', tenantShiftSchema);
-        this.ScheduleRequirements = mongoose.model('schedule-requirements', scheduleRequirementsSchema);
+        this.ScheduleShift = mongoose.model('schedule__shift', scheduleShiftSchema);
+        this.ScheduleRequirements = mongoose.model('schedule_requirements', scheduleRequirementsSchema);
+        this.ScheduleRequirementsImproved = mongoose.model('schedule_requirements_improved', scheduleRequirementsImprovedSchema);
     }
 }
 
