@@ -3,7 +3,7 @@
     <div class="col-1"></div>
 
     <div class="col-10">
-      Start date for new schedule: <input [(ngModel)]="options.dateStrings[0]" type="date" class="form-control"
+      Start date for new schedule: <input [(ngModel)]="days.dateStrings[0]" type="date" class="form-control"
                                           name="schedule-start-date" size="12" (change)="string2Date();">
     </div>
 
@@ -16,72 +16,31 @@
     <div class="col-2"></div>
 
     <div class="col-8">
-      <div *ngIf="options.dateStrings[0]">
+      <div *ngIf="days.dateStrings[0]">
         <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
           <table class="setScheduleTable"> <!-- TODO: set up form now that new models are on component -->
-            <tr *ngFor="let dummy of ' '.repeat(7).split(''), let i = index">
-              <td>{{options.dateStrings[i]}}</td>
+            <tr *ngFor="let day of days.shifts; index as i;">
+              <td>{{days.dateStrings[i]}}</td>
               <td>
                 <table class="setScheduleOptionsTable">
+                  <div *ngFor="let shift of day; index as j;">
+                    <tr class="row" *ngIf="j % 2 == 0">
+                        <td class="col-3"><input [(ngModel)]="day[j].needed" [ngModelOptions]="{standalone: true}" type="checkbox"> {{day[j].shift.type}} {{day[j].shift.time}}</td>
+                        <td class="col-3"><input [(ngModel)]="day[j].time" [ngModelOptions]="{standalone: true}" name="shopAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                        <td class="col-3"><input [(ngModel)]="day[j+1].needed" [ngModelOptions]="{standalone: true}" name="shopAMbool{{i}}" type="checkbox"> {{day[j+1].shift.type}} {{day[j+1].shift.time}}</td>
+                        <td class="col-3"><input [(ngModel)]="day[j+1].time" [ngModelOptions]="{standalone: true}" name="shopAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                    </tr>
+                  </div>
                   <tr>
-                    <td><input [(ngModel)]="options.needShopAM[i]" name="shopAMbool{{i}}" type="checkbox"> Shop AM</td>
-                    <td><input [(ngModel)]="options.timesShopAM[i]" name="shopAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
-                    <td><input [(ngModel)]="options.needShopPM[i]" name="shopPMbool{{i}}" type="checkbox" checked> Shop PM</td>
-                    <td><input [(ngModel)]="options.timesShopPM[i]" name="shopPMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
-                  </tr>
-
-                  <tr>
-                    <td><input [(ngModel)]="options.needCartsAM[i]" name="cartsAMbool{{i}}" type="checkbox"> Carts AM</td>
-                    <td><input [(ngModel)]="options.timesCartsAM[i]" name="cartsAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
-                    <td><input [(ngModel)]="options.needCartsPM[i]" name="cartsPMbool{{i}}" type="checkbox" checked> Carts PM</td>
-                    <td><input [(ngModel)]="options.timesCartsPM[i]" name="cartsPMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
-                  </tr>
-
-                  <tr>
-                    <td><input [(ngModel)]="options.needRangeAM[i]" name="rangeAMbool{{i}}" type="checkbox"> Range AM</td>
-                    <td><input [(ngModel)]="options.timesRangeAM[i]" name="rangeAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
-                    <td><input [(ngModel)]="options.needRangePM[i]" name="rangePMbool{{i}}" type="checkbox"> Range PM</td>
-                    <td><input [(ngModel)]="options.timesRangePM[i]" name="rangePMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
-                  </tr>
-
-                  <tr>
-                    <td><input [(ngModel)]="options.needRangeRegisterAM[i]" name="rrAMbool{{i}}" type="checkbox"> RR AM</td>
-                    <td><input [(ngModel)]="options.timesRangeRegisterAM[i]" name="rrAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
-                    <td><input [(ngModel)]="options.needRangeRegisterPM[i]" name="rrPMbool{{i}}" type="checkbox"> RR PM</td>
-                    <td><input [(ngModel)]="options.timesRangeRegisterPM[i]" name="rrPMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
-                  </tr>
-
-                  <tr>
-                    <td><input [(ngModel)]="options.needStarterAM[i]" name="starterAMbool{{i}}" type="checkbox"> Starter AM</td>
-                    <td><input [(ngModel)]="options.timesStarterAM[i]" name="starterAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
-                    <td><input [(ngModel)]="options.needStarterPM[i]" name="starterPMbool{{i}}" type="checkbox"> Starter PM</td>
-                    <td><input [(ngModel)]="options.timesStarterPM[i]" name="starterPMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
-                  </tr>
-
-                  <tr>
-                    <td><input [(ngModel)]="options.needTournamentCartsAM[i]" name="tcAMbool{{i}}" type="checkbox"> Tournament Carts AM</td>
-                    <td>
-                      <input [(ngModel)]="options.timesTournamentCartsAM[i]" name="tcAMtime{{i}}" class="form-control-sm" type="time" size="9">
-                      <input [(ngModel)]="options.amountsTournamentCartsAM[i]" name="tcAMamount{{i}}" class="form-control-sm" type="number" size="9" placeholder="Amount">
-                    </td>
-                    <td><input [(ngModel)]="options.needTournamentCartsPM[i]" name="tcPMbool{{i}}" type="checkbox"> Tournament Carts PM</td>
-                    <td>
-                      <input [(ngModel)]="options.timesTournamentCartsPM[i]" name="tcPMtime{{i}}" class="form-control-sm" type="time" size="9">
-                      <input [(ngModel)]="options.amountsTournamentCartsPM[i]" name="tcPMamount{{i}}" class="form-control-sm" type="number" size="9" placeholder="Amount">
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Event Name: <input [(ngModel)]="options.eventNames[i]" name="eventName{{i}}" class="form-control-sm" type="text"
+                    <td>Event Name: <input class="col-3" [(ngModel)]="days.eventNames[i]" [ngModelOptions]="{standalone: true}" class="form-control-sm" type="text"
                                            placeholder="leave blank if none"></td>
                     <td></td>
                   </tr>
+                  <hr>
                 </table>
               </td>
             </tr>
           </table>
-
-          <hr>
 
           <div class="row">
             <div class="col-10"></div>

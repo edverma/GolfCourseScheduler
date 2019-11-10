@@ -20,7 +20,7 @@ export class ScheduleShift {
 export class ScheduleRequirementsImproved {
   dateStrings: string [] = [];
   dateDates: Date[] = [];
-  shifts: ScheduleShift[] = [];
+  shifts: ScheduleShift[][] = [];
   eventNames: string[] = [];
 }
 

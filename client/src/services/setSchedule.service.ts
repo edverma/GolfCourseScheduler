@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {ScheduleShift} from '../clientModels';
+import {ScheduleRequirementsImproved, ScheduleShift} from '../clientModels';
 
 import { environment } from '../environments/environment';
 
@@ -23,9 +23,6 @@ export class SetScheduleService {
   }
 
   postRequirements( scheduleRequirements: string ){
-    this.http.post<string>(serviceAddress, scheduleRequirements, httpOptions)
-      .subscribe(res => {
-        console.log('Server response: ', res);
-      });
+    return this.http.post<ScheduleRequirementsImproved>(serviceAddress.concat('/days'), scheduleRequirements, httpOptions);
   }
 }

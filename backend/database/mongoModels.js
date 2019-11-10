@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 let tenantShiftSchema = new Schema ({
     tenant: Number,
-    type: Number,
-    time: Number,
+    type: String,
+    time: String,
     order: Number
 });
 
@@ -18,7 +18,7 @@ let scheduleShiftSchema = new Schema ({
 let scheduleRequirementsImprovedSchema = new Schema({
     dateStrings: [String],
     dateDates: [Date],
-    shifts: [scheduleShiftSchema],
+    shifts: [Schema.Types.Mixed],
     eventNames: [String]
 });
 

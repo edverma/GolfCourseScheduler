@@ -4,16 +4,16 @@ module.exports = {
     },
 
     ShiftType: {
-        SHOP: 0,
-        CARTS: 1,
-        RANGE: 2,
-        RANGE_REGISTER: 3,
-        STARTER: 4,
-        TOURNAMENT_CARTS: 5
+        SHOP: 'Shop',
+        CARTS: 'Carts',
+        RANGE: 'Range',
+        RANGE_REGISTER: 'Range Register',
+        STARTER: 'Starter',
+        TOURNAMENT_CARTS: 'Tournament Carts'
     },
 
     ShiftTime: {
-        AM: 0,
-        PM: 1
+        AM: 'AM',
+        PM: 'PM'
     }
 };
