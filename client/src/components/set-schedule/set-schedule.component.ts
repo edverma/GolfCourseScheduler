@@ -19,7 +19,6 @@ export class SetScheduleComponent implements OnInit{
 
   constructor(private setScheduleService: SetScheduleService) { }
 
-  //TODO: Format ScheduleShift data
   ngOnInit() {
     const vm = this;
     vm.days = new ScheduleRequirementsImproved;
@@ -43,19 +42,22 @@ export class SetScheduleComponent implements OnInit{
   }
 
   string2Date(): void {
-    let days = this.days;
-    days.dateDates[0] = new Date(days.dateStrings[0]);
-    days.dateDates[0].setDate(days.dateDates[0].getDate()+1); //This line is here bc when I select date on bootstrap calendar it returns day - 1
+    const dateDates: Date[] = this.days.dateDates;
+    const dateStrings: String[] = this.days.dateStrings;
+    // @ts-ignore
+    dateDates[0] = new Date(dateStrings[0]);
+    dateDates[0].setDate(dateDates[0].getDate()+1); //This line is here bc when I select date on bootstrap calendar it returns day - 1
 
     for (var i=1; i < 7; i++){
-      days.dateDates[i] = new Date(days.dateDates[0]);
-      days.dateDates[i].setDate(days.dateDates[0].getDate()+i);
-      days.dateStrings[i] = days.dateDates[i].toString();
-      days.dateStrings[i] = days.dateStrings[i].substr(0,15);
+      // @ts-ignore
+      dateDates[i] = new Date(dateDates[0]);
+      dateDates[i].setDate(dateDates[0].getDate()+i);
+      dateStrings[i] = dateDates[i].toString();
+      dateStrings[i] = dateStrings[i].substr(0,15);
     }
 
-    days.dateStrings[0] = days.dateDates[0].toString();
-    days.dateStrings[0] = days.dateStrings[0].substr(0,15);
+    dateStrings[0] = dateDates[0].toString();
+    dateStrings[0] = dateStrings[0].substr(0,15);
   }
 
   onSubmit(): void {

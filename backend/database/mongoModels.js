@@ -12,7 +12,8 @@ let scheduleShiftSchema = new Schema ({
     shift: tenantShiftSchema,
     time: String,
     amount: Number,
-    needed: Boolean
+    needed: Boolean,
+    employee: { type: Schema.ObjectId, default: null }
 });
 
 let scheduleRequirementsImprovedSchema = new Schema({
@@ -33,7 +34,6 @@ let userSchema = new Schema({
     preferredShifts: Number,
     availability: [availabilitySchema]
 });
-
 
 class MongoModels {
     constructor() {
