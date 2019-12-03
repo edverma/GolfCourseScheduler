@@ -1,2 +1,2 @@
 # GolfCourseScheduler
-A web application for golf course managers to effectively and efficiently create their employee's weekly schedules.
+A web application for golf course managers to effectively and efficiently create their employees' weekly schedules.
