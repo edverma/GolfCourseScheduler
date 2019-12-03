@@ -9,7 +9,8 @@ module.exports = {
         RANGE: 'Range',
         RANGE_REGISTER: 'Range Register',
         STARTER: 'Starter',
-        TOURNAMENT_CARTS: 'Tournament Carts'
+        TOURNAMENT_CARTS: 'Tournament Carts',
+        ON: 'On'
     },
 
     ShiftTime: {
@@ -21,9 +22,4 @@ module.exports = {
         BASIC: 'Basic',
         ADMIN: 'Admin'
     },
-
-    UserType: {
-        EMPLOYEE: 'Employee',
-        MANAGER: 'Manager'
-    }
 };

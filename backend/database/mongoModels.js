@@ -32,8 +32,10 @@ let availabilitySchema = new Schema({
 });
 
 let userSchema = new Schema({
+    fname: String,
+    lname: String,
     role: String,
-    type: String,
+    shiftTypes: [String],
     preferredShifts: Number,
     availability: [availabilitySchema]
 });
