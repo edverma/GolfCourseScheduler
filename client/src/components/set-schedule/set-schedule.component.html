@@ -3,7 +3,7 @@
     <div class="col-1"></div>
 
     <div class="col-10">
-      Start date for new schedule: <input [(ngModel)]="days.dateStrings[0]" type="date" class="form-control"
+      Start date for new schedule: <input [(ngModel)]="week.dateStrings[0]" type="date" class="form-control"
                                           name="schedule-start-date" size="12" (change)="string2Date();">
     </div>
 
@@ -16,23 +16,23 @@
     <div class="col-2"></div>
 
     <div class="col-8">
-      <div *ngIf="days.dateStrings[0]">
+      <div *ngIf="week.dateStrings[0]">
         <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
           <table class="setScheduleTable"> <!-- TODO: set up form now that new models are on component -->
-            <tr *ngFor="let day of days.shifts; index as i;">
-              <td>{{days.dateStrings[i]}}</td>
+            <tr *ngFor="let day of week.shifts; index as i;">
+              <td>{{week.dateStrings[i]}}</td>
               <td>
                 <table class="setScheduleOptionsTable">
-                  <div *ngFor="let shift of day; index as j;">
-                    <tr class="row" *ngIf="j % 2 == 0">
-                        <td class="col-3"><input [(ngModel)]="day[j].needed" [ngModelOptions]="{standalone: true}" type="checkbox"> {{day[j].shift.type}} {{day[j].shift.time}}</td>
-                        <td class="col-3"><input [(ngModel)]="day[j].time" [ngModelOptions]="{standalone: true}" name="shopAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
-                        <td class="col-3"><input [(ngModel)]="day[j+1].needed" [ngModelOptions]="{standalone: true}" name="shopAMbool{{i}}" type="checkbox"> {{day[j+1].shift.type}} {{day[j+1].shift.time}}</td>
-                        <td class="col-3"><input [(ngModel)]="day[j+1].time" [ngModelOptions]="{standalone: true}" name="shopAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                  <div *ngFor="let shift of day; index as j; let even = even">
+                    <tr class="row" *ngIf="even">
+                        <td class="col-3"><input [(ngModel)]="day[j].needed" [ngModelOptions]="{standalone: true}" type="checkbox"> {{day[j].shift.type}} {{day[j].shift.start_time}}</td>
+                        <td class="col-3"><input [(ngModel)]="day[j].start_time" [ngModelOptions]="{standalone: true}" name="shopAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
+                        <td class="col-3"><input [(ngModel)]="day[j+1].needed" [ngModelOptions]="{standalone: true}" name="shopAMbool{{i}}" type="checkbox"> {{day[j+1].shift.type}} {{day[j+1].shift.start_time}}</td>
+                        <td class="col-3"><input [(ngModel)]="day[j+1].start_time" [ngModelOptions]="{standalone: true}" name="shopAMtime{{i}}" class="form-control-sm" type="time" size="9"></td>
                     </tr>
                   </div>
                   <tr>
-                    <td>Event Name: <input class="col-3" [(ngModel)]="days.eventNames[i]" [ngModelOptions]="{standalone: true}" class="form-control-sm" type="text"
+                    <td>Event Name: <input class="col-3" [(ngModel)]="week.eventNames[i]" [ngModelOptions]="{standalone: true}" class="form-control-sm" type="text"
                                            placeholder="leave blank if none"></td>
                     <td></td>
                   </tr>

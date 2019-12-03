@@ -9,8 +9,10 @@ export class TenantShift {
 
 export class ScheduleShift {
   shift: TenantShift;
-  date: Date;
-  time: string;
+  start_time: string;
+  end_time: string;
+  start_datetime: Date;
+  end_datetime: Date;
   amount: Number;
   needed: boolean;
   employee: User;

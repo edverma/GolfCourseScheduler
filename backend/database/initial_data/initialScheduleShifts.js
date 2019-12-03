@@ -6,17 +6,20 @@ module.exports = function (){
     const initialTenantShifts = require('./initialTenantShifts');
     let initialScheduleShifts = [];
     for (let i=0; i<initialTenantShifts.length; i++){
-        let time;
+        let start_time; let end_time;
         if ( initialTenantShifts[i].time == ShiftTime.AM ) {
-            time = "07:00"
+            start_time = "07:00";
+            end_time = "13:00"
         } else {
-            time = "13:00"
+            start_time = "13:00";
+            end_time = "21:00";
         }
 
         initialScheduleShifts.push(
             {
                 shift: initialTenantShifts[i],
-                time: time,
+                start_time: start_time,
+                end_time: end_time,
                 amount: 0,
                 needed: true
             }

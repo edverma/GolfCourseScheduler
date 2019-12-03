@@ -8,10 +8,11 @@ module.exports = [
         preferredShifts: 4,
         availability: [
             {
-                day: 'Monday',
-                timeRanges: ['00:00', '23:59']
+                weekday: 'Monday',
+                timeRanges: [
+                    ['00:00', '23:59']
+                ]
             }
         ]
     }
-
 ];

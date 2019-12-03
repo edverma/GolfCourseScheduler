@@ -10,7 +10,10 @@ let tenantShiftSchema = new Schema ({
 
 let scheduleShiftSchema = new Schema ({
     shift: tenantShiftSchema,
-    time: String,
+    start_time: String,
+    end_time: String,
+    start_datetime: Date,
+    end_datetime: Date,
     amount: Number,
     needed: Boolean,
     employee: { type: Schema.ObjectId, default: null }

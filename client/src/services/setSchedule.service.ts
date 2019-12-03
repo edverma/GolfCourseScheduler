@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {ScheduleRequirementsImproved, ScheduleShift} from '../clientModels';
-
+import {ScheduleRequirementsImproved, ScheduleShift} from '../../../backend/database/mongoModels';
 import { environment } from '../environments/environment';
 
 const httpOptions = {
