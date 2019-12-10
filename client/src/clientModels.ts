@@ -26,7 +26,7 @@ export class ScheduleRequirementsImproved {
 }
 
 export class Availability {
-  weekday: string;
+  weekday: number;
   timeRanges: string[][] = [];
 }
 

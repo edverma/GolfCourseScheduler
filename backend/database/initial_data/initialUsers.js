@@ -15,7 +15,7 @@ module.exports = [
         preferredShifts: 4,
         availability: [
             {
-                weekday: 'Monday',
+                weekday: 1,
                 timeRanges: [
                     ['00:00', '23:59']
                     ]
@@ -35,46 +35,46 @@ module.exports = [
         preferredShifts: 4,
         availability: [
             {
-                weekday: 'Sunday',
+                weekday: 0,
                 timeRanges: [
                     ['00:00', '23:59']
                 ]
             },
             {
-                weekday: 'Monday',
+                weekday: 1,
                 timeRanges: [
                     ['07:00', '10:30'],
                     ['13:00', "23:59"],
                 ]
             },
             {
-                weekday: 'Tuesday',
+                weekday: 2,
                 timeRanges: [
                     ['16:00', "23:59"],
                 ]
             },
             {
-                weekday: 'Wednesday',
+                weekday: 3,
                 timeRanges: [
                     ['07:00', '10:30'],
                     ['13:00', "23:59"],
                 ]
             },
             {
-                weekday: 'Thursday',
+                weekday: 4,
                 timeRanges: [
                     ['16:00', "23:59"],
                 ]
             },
             {
-                weekday: 'Friday',
+                weekday: 5,
                 timeRanges: [
                     ['07:00', '10:30'],
                     ['13:00', "23:59"],
                 ]
             },
             {
-                weekday: 'Saturday',
+                weekday: 6,
                 timeRanges: [
                     ['00:00', '23:59']
                 ]

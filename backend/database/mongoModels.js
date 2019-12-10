@@ -27,7 +27,7 @@ let scheduleRequirementsImprovedSchema = new Schema({
 });
 
 let availabilitySchema = new Schema({
-    weekday: String,
+    weekday: Number,
     timeRanges: [Schema.Types.Mixed]
 });
 
