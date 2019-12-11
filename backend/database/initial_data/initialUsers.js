@@ -6,18 +6,19 @@ module.exports = [
         fname: "test",
         lname: "tester",
         role: UserRole.BASIC,
-        shiftTypes: [
+        shift_types: [
             ShiftType.CARTS,
             ShiftType.RANGE,
             ShiftType.RANGE_REGISTER,
             ShiftType.SHOP
         ],
-        preferredShifts: 4,
+        preferred_shifts: 4,
         availability: [
             {
                 weekday: 1,
-                timeRanges: [
-                    ['00:00', '23:59']
+                time_ranges: [
+                    ['00:00', '23:59'],
+                    ['10:00', '13:00']
                     ]
             }
         ]
@@ -26,56 +27,56 @@ module.exports = [
         fname: "Griffin",
         lname: "Rousseau",
         role: UserRole.BASIC,
-        shiftTypes: [
+        shift_types: [
             ShiftType.CARTS,
             ShiftType.RANGE,
             ShiftType.RANGE_REGISTER,
             ShiftType.SHOP
         ],
-        preferredShifts: 4,
+        preferred_shifts: 4,
         availability: [
             {
                 weekday: 0,
-                timeRanges: [
+                time_ranges: [
                     ['00:00', '23:59']
                 ]
             },
             {
                 weekday: 1,
-                timeRanges: [
+                time_ranges: [
                     ['07:00', '10:30'],
                     ['13:00', "23:59"],
                 ]
             },
             {
                 weekday: 2,
-                timeRanges: [
+                time_ranges: [
                     ['16:00', "23:59"],
                 ]
             },
             {
                 weekday: 3,
-                timeRanges: [
+                time_ranges: [
                     ['07:00', '10:30'],
                     ['13:00', "23:59"],
                 ]
             },
             {
                 weekday: 4,
-                timeRanges: [
+                time_ranges: [
                     ['16:00', "23:59"],
                 ]
             },
             {
                 weekday: 5,
-                timeRanges: [
+                time_ranges: [
                     ['07:00', '10:30'],
                     ['13:00', "23:59"],
                 ]
             },
             {
                 weekday: 6,
-                timeRanges: [
+                time_ranges: [
                     ['00:00', '23:59']
                 ]
             }

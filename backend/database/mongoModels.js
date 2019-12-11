@@ -16,7 +16,7 @@ let scheduleShiftSchema = new Schema ({
     end_datetime: Date,
     amount: Number,
     needed: Boolean,
-    employee: { type: Schema.ObjectId, default: null }
+    employee_id: { type: Schema.ObjectId, default: null }
 });
 
 let scheduleRequirementsImprovedSchema = new Schema({
@@ -28,15 +28,15 @@ let scheduleRequirementsImprovedSchema = new Schema({
 
 let availabilitySchema = new Schema({
     weekday: Number,
-    timeRanges: [Schema.Types.Mixed]
+    time_ranges: [Schema.Types.Mixed]
 });
 
 let userSchema = new Schema({
     fname: String,
     lname: String,
     role: String,
-    shiftTypes: [String],
-    preferredShifts: Number,
+    shift_types: [String],
+    preferred_shifts: Number,
     availability: [availabilitySchema]
 });
 

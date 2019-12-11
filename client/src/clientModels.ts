@@ -15,7 +15,7 @@ export class ScheduleShift {
   end_datetime: Date;
   amount: Number;
   needed: boolean;
-  employee: User;
+  employee_id: User;
 }
 
 export class ScheduleRequirementsImproved {

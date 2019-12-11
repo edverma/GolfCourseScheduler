@@ -65,7 +65,7 @@ export class SetScheduleComponent implements OnInit{
       const weekJSON = JSON.stringify( this.week );
       this.setScheduleService.postRequirements( weekJSON )
         .subscribe({
-          next(data) { console.log(data) },
+          next(data) { console.log( data );},
           error(err) { console.error(err); },
           complete() { }
         });
