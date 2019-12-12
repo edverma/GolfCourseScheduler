@@ -2,7 +2,6 @@ const _ = require('underscore');
 const db = require('../database/database.js');
 const ScheduleRequirementsImproved = require('../database/mongoModels.js').Models.ScheduleRequirementsImproved;
 const User = require('../database/mongoModels.js').Models.User;
-const userSvc = require('./user.svc');
 
 module.exports = {
     saveSchedule: function( schedule, callback ) {
@@ -15,16 +14,33 @@ module.exports = {
     },
 
     chooseSchedule: function ( weekRequirements, callback ) {
-        _.each ( weekRequirements.shifts, (day) => {
-            _.each( day, (shift) => {
+        let test;
+        _.each(weekRequirements.shifts, (day, i) => {
+            test = false;
+            _.each(day, (shift, j) => {
                 this.getAvailableEmployees(weekRequirements, shift, availableEmployees => {
                     this.chooseBestFit(weekRequirements, shift, availableEmployees, bestFitEmployee => {
-                        shift.employee_id = bestFitEmployee._id;
+                        if( bestFitEmployee != undefined ) {
+                            weekRequirements.shifts[i][j].employee_id = bestFitEmployee._id;
+                        } else{
+                            shift.employee_id = null;
+                        }
                     });
                 });
+                if( i === weekRequirements.shifts.length-1 && j === weekRequirements.shifts[i].length-1) {
+                    weekRequirements.shifts.forEach(day => {
+                        day.forEach(shift => {
+                            setTimeout( () => {
+                                console.log(shift.employee_id);
+                                callback( weekRequirements );
+                            },1000); //TODO: need to fix this so it does not only work with timeout
+                        });
+                    });
+                }
             });
+
+
         });
-        callback( weekRequirements );
     },
 
     getAvailableEmployees ( weekRequirements, shift, callback ) {
@@ -60,29 +76,61 @@ module.exports = {
                     "availability.start_hour": {$lte: start_datetime.getHours()},
                     "availability.start_minute": {$lte: start_datetime.getMinutes()},
                     "availability.end_hour": {$gte: end_datetime.getHours()},
-                    "availability.end_minute": {$gte: end_datetime.getMinutes()}
+                    "availability.end_minute": {$gte: end_datetime.getMinutes()},
+                    "availability.weekday": start_datetime.getDay()
                 }
             }
         ],(err, users) => {
-            callback(users); //TODO: currently user objects are unwound by availability.
+            let woundUsers = [];
+            for ( let i = 0; i < users.length; i++ ){
+                if ( users[i+1] === undefined || users[i]._id.toString().localeCompare(users[i+1]._id.toString()) != 0 ) {
+                    users[i].availability = [users[i].availability];
+                    woundUsers.push(users[i]);
+                } else {
+                    let count = 0;
+                    users[i].availability = [users[i].availability];
+                    for ( let j = i+1; j < users.length; j++ ) {
+                        if(users[j]._id === users[i]._id)
+                        users[i].availability.push( users[j].availability[0] );
+                        count++;
+                    }
+                    woundUsers.push( users[i] );
+                    i += count;
+                }
+            } // this is not correct
+            /*
+            console.log("wound users: ", woundUsers);
+            woundUsers.forEach(user => {
+                console.log('availability: ', user.availability);
+            });
+             */
+            callback(users);
         });
     },
 
     removeAlreadyScheduledEmployees( weekRequirements, availableEmployees, shiftStartDatetime, callback ) {
         shiftStartDatetime = new Date(shiftStartDatetime);
-        weekRequirements.shifts.forEach(shift => {
-            let start_datetime = new Date(shift.start_datetime);
-            if(start_datetime.getDay() == shiftStartDatetime.getDay()) {
-                availableEmployees.forEach((employee, i) => {
-                    if(employee._id == shift.employee_id) availableEmployees.splice(i,1);
-                });
-            }
+        weekRequirements.shifts.forEach(day => {
+            day.forEach(shift => {
+                let start_datetime = new Date(shift.start_datetime);
+                if (start_datetime.getDay() === shiftStartDatetime.getDay()) {
+                    if(shift.employee_id != null) {
+                        availableEmployees.forEach((employee, i) => {
+                            if (employee._id.toString().localeCompare(shift.employee_id) === 0) {
+                                availableEmployees.splice(i, 1);
+                            }
+                        });
+                    }
+                }
+            });
         });
         callback(availableEmployees);
     },
 
     chooseBestFit ( weekRequirements, shift, availableEmployees, callback ) {
-        console.log(availableEmployees);
+        //console.log(availableEmployees);
+        let bestFitEmployee = availableEmployees[Math.floor(Math.random() * Math.floor(availableEmployees.length))];
+        if(bestFitEmployee != undefined ) console.log('bestFitEmployee: ', bestFitEmployee.fname);
         callback(bestFitEmployee);
     }
 

@@ -15,11 +15,46 @@ module.exports = [
         preferred_shifts: 4,
         availability: [
             {
+                weekday: 0,
+                time_ranges: [
+                    ['00:00', '23:59'],
+                ]
+            },
+            {
                 weekday: 1,
                 time_ranges: [
                     ['00:00', '23:59'],
-                    ['10:00', '13:00']
-                    ]
+                ]
+            },
+            {
+                weekday: 2,
+                time_ranges: [
+                    ['00:00', '23:59'],
+                ]
+            },
+            {
+                weekday: 3,
+                time_ranges: [
+                    ['00:00', '23:59'],
+                ]
+            },
+            {
+                weekday: 4,
+                time_ranges: [
+                    ['00:00', '23:59'],
+                ]
+            },
+            {
+                weekday: 5,
+                time_ranges: [
+                    ['00:00', '23:59'],
+                ]
+            },
+            {
+                weekday: 6,
+                time_ranges: [
+                    ['00:00', '23:59'],
+                ]
             }
         ]
     },
