@@ -9,10 +9,7 @@ module.exports = {
     getRequirements: function(app) {
         app.get('/set-schedule/schedule-shift', ( req, res ) => {
             ScheduleShift.find({}, null, { sort: 'shift.order' }, (err, docs) => {
-                if (err != null) {
-                    console.error(err);
-                    return;
-                }
+                if (err != null) { console.error(err); return; }
                 res.send(docs);
             });
         });
@@ -21,9 +18,10 @@ module.exports = {
     //TODO: choose schedule!
     postRequirements: function(app) {
         app.post('/set-schedule/days', ( req, res ) => {
-            svc.chooseSchedule( req.body, ( schedule ) => {
-                svc.saveSchedule( schedule, (savedSchedule) => {
-                    res.send(savedSchedule);
+            svc.chooseSchedule( req.body, schedule => {
+                svc.saveSchedule( schedule, savedSchedule => {
+                    savedSchedule = JSON.stringify(savedSchedule);
+                    res.end(savedSchedule);
                 });
             });
         });

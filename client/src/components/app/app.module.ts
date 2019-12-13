@@ -7,19 +7,23 @@ import { AppRoutingModule } from '../../routing/routing.module';
 import { AppComponent } from './app.component';
 import { HeadingComponent } from '../heading/heading.component';
 import { SetScheduleComponent } from '../set-schedule/set-schedule.component';
+import {ScheduleComponent} from '../schedule/schedule.component';
+import {AgGridModule} from "ag-grid-angular";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeadingComponent,
-    SetScheduleComponent
+    SetScheduleComponent,
+    ScheduleComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        AgGridModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

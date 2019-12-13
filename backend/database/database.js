@@ -36,8 +36,12 @@ class Database {
 
     createDocument( jsonObj, schema, callback ) {
         let document = new schema( jsonObj );
-        document.save( (err) => {
-            callback(err);
+        document.save( (err, doc) => {
+            if(err){
+                console.error(err);
+                return;
+            }
+            callback(doc);
         });
     }
 }

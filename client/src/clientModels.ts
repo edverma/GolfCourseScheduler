@@ -19,6 +19,7 @@ export class ScheduleShift {
 }
 
 export class ScheduleRequirementsImproved {
+  _id: Object;
   dateStrings: string [] = [];
   dateDates: Date[] = [];
   shifts: ScheduleShift[][] = [];
@@ -31,6 +32,8 @@ export class Availability {
 }
 
 export class User {
+  _id: Object;
+  tenant: number;
   fname: string;
   lname: string;
   role: UserRole;

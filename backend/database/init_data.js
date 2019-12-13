@@ -17,9 +17,7 @@ function initializeUserData(db) {
             let initialUsers = getInitialUsers;
             for (let i = 0; i < initialUsers.length; i++) {
                 db.createDocument(initialUsers[i], User, (err) => {
-                    if (err != null) {
-                        console.error(err);
-                    }
+                    if (err != null) { console.error(err); }
                 });
             }
         }

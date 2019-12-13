@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import * as _ from 'lodash';
 import * as jquery from '../../../node_modules/jquery/dist/jquery.slim.js';
 import * as bootstrap from '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
@@ -18,7 +19,10 @@ export class SetScheduleComponent implements OnInit{
   week:  ScheduleRequirementsImproved;
   shifts: ScheduleShift[];
 
-  constructor(private setScheduleService: SetScheduleService) { }
+  constructor(
+    private setScheduleService: SetScheduleService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     const vm = this;
@@ -61,13 +65,14 @@ export class SetScheduleComponent implements OnInit{
   }
 
   onSubmit(): void {
+    const vm = this;
     this.setDatetime ( () => {
       const weekJSON = JSON.stringify( this.week );
       this.setScheduleService.postRequirements( weekJSON )
         .subscribe({
           next(data) { console.log( data );},
           error(err) { console.error(err); },
-          complete() { }
+          complete() { vm.router.navigate(['/schedule']) }
         });
     });
   }

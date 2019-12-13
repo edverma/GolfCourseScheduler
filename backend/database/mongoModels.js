@@ -32,6 +32,7 @@ let availabilitySchema = new Schema({
 });
 
 let userSchema = new Schema({
+    tenant: Number,
     fname: String,
     lname: String,
     role: String,

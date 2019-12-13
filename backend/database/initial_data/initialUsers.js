@@ -1,8 +1,10 @@
 const UserRole = require('../../../enums.js').UserRole;
 const ShiftType = require('../../../enums.js').ShiftType;
+const Tenant = require('../../../enums.js').Tenant;
 
 module.exports = [
     {
+        tenant: Tenant.UGA,
         fname: "test",
         lname: "tester",
         role: UserRole.BASIC,
@@ -59,6 +61,7 @@ module.exports = [
         ]
     },
     {
+        tenant: Tenant.UGA,
         fname: "Griffin",
         lname: "Rousseau",
         role: UserRole.BASIC,
