@@ -7,8 +7,12 @@ module.exports = {
     saveSchedule: function( schedule, callback ) {
         db.createDocument( schedule, ScheduleRequirementsImproved, () => {
             ScheduleRequirementsImproved.find().limit(1).sort({$natural:-1}).exec(
-                (err, docs ) => {
-                    callback(docs);
+                (err, savedSchedule) => {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    callback(savedSchedule);
                 });
         });
     },
@@ -31,7 +35,6 @@ module.exports = {
                     weekRequirements.shifts.forEach(day => {
                         day.forEach(shift => {
                             setTimeout( () => {
-                                console.log(shift.employee_id);
                                 callback( weekRequirements );
                             },1000); //TODO: need to fix this so it does not only work with timeout
                         });
@@ -55,7 +58,7 @@ module.exports = {
         start_datetime = new Date( start_datetime );
         end_datetime = new Date( end_datetime );
         const matchQuery = {
-            "shiftType": shiftType,
+            "shiftTypes": shiftType,
             "availability.weekday": start_datetime.getDay()
         };
 
@@ -130,7 +133,6 @@ module.exports = {
     chooseBestFit ( weekRequirements, shift, availableEmployees, callback ) {
         //console.log(availableEmployees);
         let bestFitEmployee = availableEmployees[Math.floor(Math.random() * Math.floor(availableEmployees.length))];
-        if(bestFitEmployee != undefined ) console.log('bestFitEmployee: ', bestFitEmployee.fname);
         callback(bestFitEmployee);
     }
 
