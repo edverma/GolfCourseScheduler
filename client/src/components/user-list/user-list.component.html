@@ -1,0 +1,28 @@
+<div>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th *ngFor="let dummy of ' '.repeat(7).split(''), let i=index">
+        {{dayOfWeekAsString(i)}}
+      </th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>{{user.fname}} {{user.lname}}</td>
+      <td>{{user.role}}</td>
+      <td *ngFor="let dummy of ' '.repeat(7).split(''), let i=index">
+        <div *ngFor="let availability of user.availability">
+          <div *ngIf="availability.weekday === i">
+            Available
+          </div>
+        </div>
+      </td>
+      <td>
+        <button class="btn">
+          Edit
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
