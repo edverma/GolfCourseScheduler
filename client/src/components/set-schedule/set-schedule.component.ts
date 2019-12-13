@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import * as _ from 'lodash';
-import * as jquery from '../../../node_modules/jquery/dist/jquery.slim.js';
-import * as bootstrap from '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
-import {ShiftTime} from '../../../../enums.js';
 import {ScheduleShift, ScheduleRequirementsImproved} from '../../clientModels';
 import { SetScheduleService } from '../../services/setSchedule.service';
 
@@ -12,7 +9,7 @@ import { SetScheduleService } from '../../services/setSchedule.service';
   selector: 'set-schedule',
   templateUrl: './set-schedule.component.html',
   //TODO: fix the way this css is imported so it can be imported globally
-  styleUrls: ['../../../node_modules/bootstrap/dist/css/bootstrap.min.css', '../app/app.component.css']
+  styleUrls: ['../app/app.component.css']
 })
 
 export class SetScheduleComponent implements OnInit{

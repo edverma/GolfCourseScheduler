@@ -15,6 +15,7 @@ module.exports = {
         });
     },
 
+    //add role query here
     getEmployees: function(app){
         app.get('/schedule/employees', ( req, res ) => {
             User.find({tenant: Tenant.UGA}).exec(

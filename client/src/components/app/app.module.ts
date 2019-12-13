@@ -4,10 +4,12 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from '../../routing/routing.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { HeadingComponent } from '../heading/heading.component';
 import { SetScheduleComponent } from '../set-schedule/set-schedule.component';
 import {ScheduleComponent} from '../schedule/schedule.component';
+import {UserListComponent} from "../user-list/user-list.component";
 import {AgGridModule} from "ag-grid-angular";
 
 @NgModule({
@@ -15,13 +17,15 @@ import {AgGridModule} from "ag-grid-angular";
     AppComponent,
     HeadingComponent,
     SetScheduleComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    UserListComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
+        NgbModule,
         AgGridModule
     ],
   providers: [],
