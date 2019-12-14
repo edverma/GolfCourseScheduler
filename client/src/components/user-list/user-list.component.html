@@ -19,9 +19,11 @@
         </div>
       </td>
       <td>
-        <button class="btn">
-          Edit
-        </button>
+        <a [routerLink]="['/user-edit',user._id]">
+          <button class="btn">
+            Edit
+          </button>
+        </a>
       </td>
     </tr>
   </table>

@@ -10,6 +10,7 @@ import { HeadingComponent } from '../heading/heading.component';
 import { SetScheduleComponent } from '../set-schedule/set-schedule.component';
 import {ScheduleComponent} from '../schedule/schedule.component';
 import {UserListComponent} from "../user-list/user-list.component";
+import {UserEditComponent} from "../user-edit/user-edit.component";
 import {AgGridModule} from "ag-grid-angular";
 
 @NgModule({
@@ -18,7 +19,8 @@ import {AgGridModule} from "ag-grid-angular";
     HeadingComponent,
     SetScheduleComponent,
     ScheduleComponent,
-    UserListComponent
+    UserListComponent,
+    UserEditComponent
   ],
     imports: [
         BrowserModule,

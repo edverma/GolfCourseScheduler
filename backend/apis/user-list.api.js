@@ -9,8 +9,7 @@ module.exports = {
                    if (err) { console.error(err); return; }
                    users = JSON.stringify(users);
                    res.end(users);
-               }
-           )
+               })
         });
     }
 };

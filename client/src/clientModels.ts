@@ -28,7 +28,7 @@ export class ScheduleRequirementsImproved {
 
 export class Availability {
   weekday: number;
-  timeRanges: string[][] = [];
+  time_ranges: string[][] = [];
 }
 
 export class User {
@@ -37,7 +37,7 @@ export class User {
   fname: string;
   lname: string;
   role: UserRole;
-  shiftTypes: [ShiftType];
-  preferredShifts: Number;
+  shift_types: [ShiftType];
+  preferred_shifts: Number;
   availability: [Availability];
 }
