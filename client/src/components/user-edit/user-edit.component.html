@@ -1,0 +1,37 @@
+<div>
+  <h1 class="text-center">{{user.fname}} {{user.lname}}</h1>
+
+  <div>
+    <label>First Name:</label>
+    <input type="text" [(ngModel)]="user.fname">
+  </div>
+  <div>
+    <label>Last Name:</label>
+    <input type="text" [(ngModel)]="user.lname">
+  </div>
+  <div>
+    <label>Availability:</label>
+    <span>
+      <button class="btn" (click)="addAvailability()">Add</button>
+      <select [(ngModel)]="tempWeekday">
+        <option *ngFor="let dummy of ' '.repeat(7).split(''), let i=index" [value]="i">
+          {{dayOfWeekAsString(i)}}
+        </option>
+      </select>
+        <label>Start Time:</label>
+        <input type="time" [(ngModel)]="tempTimeRange[0]">
+        <label>End Time:</label>
+        <input type="time" [(ngModel)]="tempTimeRange[1]">
+    </span>
+    <div *ngFor="let availability of user.availability">
+      <div *ngFor="let time_range of availability.time_ranges, let timeRangeIndex=index">
+        <button class="btn" (click)="removeAvailability(availability.weekday, timeRangeIndex)">Remove</button>
+        {{dayOfWeekAsString(availability.weekday)}}
+        Start Time: {{time_range[0]}} End Time: {{time_range[1]}}
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn" (click)="saveUser()">Save</button>
+  </div>
+</div>
