@@ -20,5 +20,6 @@ scheduleAPI.getSchedule(app);
 scheduleAPI.getEmployees(app);
 userListAPI.getUsers(app);
 userEditAPI.getUserById(app);
+userEditAPI.saveUser(app);
 
 app.listen(port, () => console.log(`Golf Course Scheduler Server listening on port ${port}!`));

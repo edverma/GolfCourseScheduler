@@ -1,3 +1,4 @@
+const svc = require('../services/user.svc');
 const User = require('../database/mongoModels.js').Models.User;
 const Tenant = require('../../enums.js').Tenant;
 
@@ -13,6 +14,15 @@ module.exports = {
                     user = JSON.stringify(user);
                     res.end(user);
                 })
+        });
+    },
+
+    saveUser: function(app) {
+        app.post('/user/save', (req, res) => {
+            svc.saveUser(req.body, savedUser => {
+                savedUser = JSON.stringify(savedUser);
+                res.end(savedUser);
+            });
         });
     }
 };

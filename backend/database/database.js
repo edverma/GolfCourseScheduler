@@ -8,6 +8,11 @@ const database = 'scheduler_database';
 
 class Database {
     constructor() {
+        mongoose.set('useNewUrlParser', true);
+        mongoose.set('useFindAndModify', false);
+        mongoose.set('useCreateIndex', true);
+        mongoose.set('useUnifiedTopology', true);
+
         this._create();
         this._connect();
     }
@@ -37,6 +42,16 @@ class Database {
     createDocument( jsonObj, schema, callback ) {
         let document = new schema( jsonObj );
         document.save( (err, doc) => {
+            if(err){
+                console.error(err);
+                return;
+            }
+            callback(doc);
+        });
+    }
+
+    updateDocument( jsonObj, schema, callback ) {
+        schema.findOneAndUpdate( {_id: jsonObj._id}, jsonObj, (err, doc) => {
             if(err){
                 console.error(err);
                 return;
