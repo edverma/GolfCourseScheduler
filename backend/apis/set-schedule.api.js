@@ -7,7 +7,7 @@ const svc = require('../services/set-schedule.svc');
 
 module.exports = {
     getRequirements: function(app) {
-        app.get('/set-schedule/schedule-shift', ( req, res ) => {
+        app.get('/api/set-schedule/schedule-shift', ( req, res ) => {
             ScheduleShift.find({}, null, { sort: 'shift.order' }, (err, docs) => {
                 if (err != null) { console.error(err); return; }
                 res.send(docs);
@@ -17,7 +17,7 @@ module.exports = {
 
     //TODO: choose schedule!
     postRequirements: function(app) {
-        app.post('/set-schedule/days', ( req, res ) => {
+        app.post('/api/set-schedule/days', ( req, res ) => {
             svc.chooseSchedule( req.body, schedule => {
                 svc.saveSchedule( schedule, savedSchedule => {
                     savedSchedule = JSON.stringify(savedSchedule);

@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const router = express.Router();
 
 const setScheduleAPI = require('./apis/set-schedule.api');
 const scheduleAPI = require('./apis/schedule.api');
@@ -14,6 +15,7 @@ const port = 8080;
 
 app.use( bodyParser.json() );
 app.use( cors() );
+app.use( '/api', router)
 
 setScheduleAPI.getRequirements(app);
 setScheduleAPI.postRequirements(app);

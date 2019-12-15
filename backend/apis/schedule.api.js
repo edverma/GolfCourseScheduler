@@ -4,7 +4,7 @@ const Tenant = require('../../enums.js').Tenant;
 
 module.exports = {
     getSchedule: function(app) {
-        app.get('/schedule', ( req, res ) => {
+        app.get('/api/schedule', ( req, res ) => {
             ScheduleRequirementsImproved.find().limit(1).sort({$natural:-1}).exec(
                 (err, schedule) => {
                     if (err) { console.error(err); return; }
@@ -17,7 +17,7 @@ module.exports = {
 
     //add role query here
     getEmployees: function(app){
-        app.get('/schedule/employees', ( req, res ) => {
+        app.get('/api/schedule/employees', ( req, res ) => {
             User.find({tenant: Tenant.UGA}).exec(
                 (err, employees) => {
                     if (err) { console.error(err); return; }

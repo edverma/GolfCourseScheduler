@@ -2,7 +2,7 @@ const User = require('../database/mongoModels.js').Models.User;
 
 module.exports= {
     user: function(app) {
-      app.post('/session/user', (req, res) => {
+      app.post('/api/session/user', (req, res) => {
          token = req.body.token;
          User.findOne({token: token}).exec(
              (err, user) => {
@@ -13,7 +13,7 @@ module.exports= {
     },
 
     login: function(app){
-        app.post('/session/login', (req, res) => {
+        app.post('/api/session/login', (req, res) => {
             const email = req.body.email;
             const password = req.body.password;
             console.log('email: ', email);
@@ -34,7 +34,7 @@ module.exports= {
     },
 
     status: function(app){
-        app.get('/session/status', (req, res) => {
+        app.get('/api/session/status', (req, res) => {
 
         });
     }

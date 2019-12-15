@@ -4,7 +4,7 @@ const Tenant = require('../../enums.js').Tenant;
 
 module.exports = {
     getUserById: function(app) {
-        app.get('/user/:id', (req, res) => {
+        app.get('/api/user/:id', (req, res) => {
             User.find({_id: req.params.id}).exec(
                 (err, user) => {
                     if (err) {
@@ -18,7 +18,7 @@ module.exports = {
     },
 
     saveUser: function(app) {
-        app.post('/user/save', (req, res) => {
+        app.post('/api/user/save', (req, res) => {
             svc.saveUser(req.body, savedUser => {
                 savedUser = JSON.stringify(savedUser);
                 res.end(savedUser);
