@@ -14,6 +14,8 @@ import {UserRole} from "../../../../enums.js";
 export class UserEditComponent implements OnInit {
   usingUser: User;
   userID: Object;
+  basic: string;
+  admin: string;
   user: User;
   tempWeekday: number;
   tempTimeRange:[string, string];
@@ -24,7 +26,9 @@ export class UserEditComponent implements OnInit {
     private authService: AuthService
   ) {
     this.tempWeekday = 0;
-    this.tempTimeRange = ['','']
+    this.tempTimeRange = ['',''];
+    this.basic = UserRole.BASIC;
+    this.admin = UserRole.ADMIN;
   }
 
 
@@ -34,7 +38,19 @@ export class UserEditComponent implements OnInit {
       .subscribe({
         next(data) {vm.usingUser = data;},
         error(err) {console.error(err);},
-        complete() { console.log('usingUser: ', vm.usingUser);}
+        complete() { vm.user = {
+          _id: null,
+          availability: [{weekday: undefined, time_ranges: [[]]}],
+          email: "",
+          fname: "",
+          lname: "",
+          password: "",
+          preferred_shifts: 0,
+          shift_types: [undefined],
+          token: "",
+          tenant: vm.usingUser.tenant,
+          role: vm.basic
+        };}
       });
     this.route.paramMap.subscribe(params => {
       this.userID = this.route.snapshot.params.id;
@@ -43,20 +59,6 @@ export class UserEditComponent implements OnInit {
           next(data) {
               if(data){
                 vm.user = data[0];
-              } else{
-                vm.user = {
-                  _id: undefined,
-                  availability: [undefined],
-                  email: "",
-                  fname: "",
-                  lname: "",
-                  password: "",
-                  preferred_shifts: 0,
-                  shift_types: [undefined],
-                  token: "",
-                  tenant: vm.usingUser.tenant,
-                  role: UserRole.BASIC
-                }
               }
             },
           error(err) { console.error(err); },

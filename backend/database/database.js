@@ -51,7 +51,10 @@ class Database {
     }
 
     updateDocument( jsonObj, schema, callback ) {
-        schema.findOneAndUpdate( {_id: jsonObj._id}, jsonObj, (err, doc) => {
+        if(!jsonObj._id){
+            jsonObj._id = mongoose.Types.ObjectId();
+        }
+        schema.findOneAndUpdate( {_id: jsonObj._id}, jsonObj, {new:true, upsert: true}, (err, doc) => {
             if(err){
                 console.error(err);
                 return;

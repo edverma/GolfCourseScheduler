@@ -12,6 +12,17 @@
     <input type="text" [(ngModel)]="user.lname">
   </div>
   <div>
+    <label>Email:</label>
+    <input type="text" [(ngModel)]="user.email">
+  </div>
+  <div>
+    <label>User Role:</label>
+    <select [(ngModel)]="user.role">
+      <option [value]="basic">{{basic}}</option>
+      <option [value]="admin">{{admin}}</option>
+    </select>
+  </div>
+  <div>
     <label>Availability:</label>
     <span>
       <button class="btn" (click)="addAvailability()">Add</button>

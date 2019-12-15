@@ -17,11 +17,12 @@
       <td>{{user.fname}} {{user.lname}}</td>
       <td>{{user.role}}</td>
       <td *ngFor="let dummy of ' '.repeat(7).split(''), let i=index">
-        <div *ngFor="let availability of user.availability">
-          <div *ngIf="availability.weekday === i">
+          <div *ngIf="getAvailabilityWeekdaysArr(user.availability).includes(i)">
             Available
           </div>
-        </div>
+          <div *ngIf="!getAvailabilityWeekdaysArr(user.availability).includes(i)">
+            No
+          </div>
       </td>
       <td>
         <a [routerLink]="['/user-edit',user._id]">

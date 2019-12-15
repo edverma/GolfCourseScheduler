@@ -38,6 +38,10 @@ export class UserListComponent implements OnInit {
       });
   }
 
+  getAvailabilityWeekdaysArr(availability) {
+    return availability.map(obj => (obj.weekday));
+  }
+
   dayOfWeekAsString(dayIndex) {
     return ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dayIndex];
   }
