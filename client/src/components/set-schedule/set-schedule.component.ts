@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import * as _ from 'lodash';
 
-import {ScheduleShift, ScheduleRequirementsImproved} from '../../clientModels';
+import {AuthService} from '../../services/auth.service';
+import {ScheduleShift, ScheduleRequirementsImproved, User} from '../../clientModels';
 import { SetScheduleService } from '../../services/setSchedule.service';
 
 @Component({
@@ -13,16 +14,24 @@ import { SetScheduleService } from '../../services/setSchedule.service';
 })
 
 export class SetScheduleComponent implements OnInit{
+  usingUser: User;
   week:  ScheduleRequirementsImproved;
   shifts: ScheduleShift[];
 
   constructor(
     private setScheduleService: SetScheduleService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
     const vm = this;
+    this.authService.getUsingUser()
+      .subscribe({
+        next(data) {vm.usingUser = data;},
+        error(err) {console.error(err);},
+        complete() { console.log('usingUser: ', vm.usingUser);}
+      });
     this.week = new ScheduleRequirementsImproved();
     this.setScheduleService.getRequirements()
       .subscribe({

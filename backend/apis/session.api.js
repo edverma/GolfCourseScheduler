@@ -1,6 +1,17 @@
 const User = require('../database/mongoModels.js').Models.User;
 
 module.exports= {
+    user: function(app) {
+      app.post('/session/user', (req, res) => {
+         token = req.body.token;
+         User.findOne({token: token}).exec(
+             (err, user) => {
+                 user = JSON.stringify(user);
+                res.end(user);
+             })
+      });
+    },
+
     login: function(app){
         app.post('/session/login', (req, res) => {
             const email = req.body.email;
@@ -18,8 +29,7 @@ module.exports= {
                     } else{
                         res.send(null);
                     }
-                }
-            )
+                })
         });
     },
 

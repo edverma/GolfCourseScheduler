@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import * as moment from 'moment';
 
 import {ScheduleRequirementsImproved, User} from '../../clientModels';
 import { ScheduleService } from '../../services/schedule.service';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-schedule',
@@ -10,15 +11,25 @@ import { ScheduleService } from '../../services/schedule.service';
   styleUrls: ['./schedule.component.css']
 })
 export class ScheduleComponent implements OnInit {
+  usingUser: User;
   schedule: ScheduleRequirementsImproved;
   employees: User[];
   columnDefs: Array<Object>;
   rowData: Array<Object>;
 
-  constructor(private scheduleService: ScheduleService) { }
+  constructor(
+    private scheduleService: ScheduleService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     const vm = this;
+    this.authService.getUsingUser()
+      .subscribe({
+        next(data) {vm.usingUser = data;},
+        error(err) {console.error(err);},
+        complete() { console.log('usingUser: ', vm.usingUser);}
+      });
     this.scheduleService.getSchedule()
       .subscribe({
         next(data) { vm.schedule = data[0]; },
@@ -34,7 +45,7 @@ export class ScheduleComponent implements OnInit {
         complete() {
           vm.setRowData();
         }
-      })
+      });
   }
 
   setColumnDefs() {

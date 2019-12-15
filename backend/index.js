@@ -24,5 +24,6 @@ userEditAPI.getUserById(app);
 userEditAPI.saveUser(app);
 sessionAPI.login(app);
 sessionAPI.status(app);
+sessionAPI.user(app);
 
 app.listen(port, () => console.log(`Golf Course Scheduler Server listening on port ${port}!`));

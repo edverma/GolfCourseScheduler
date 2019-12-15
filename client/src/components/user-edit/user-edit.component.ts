@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import {User, Availability} from "../../clientModels";
 import {UserEditService} from "../../services/user-edit.service";
+import {AuthService} from "../../services/auth.service";
+import {UserRole} from "../../../../enums.js";
 
 @Component({
   selector: 'app-user-edit',
@@ -10,6 +12,7 @@ import {UserEditService} from "../../services/user-edit.service";
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
+  usingUser: User;
   userID: Object;
   user: User;
   tempWeekday: number;
@@ -17,7 +20,8 @@ export class UserEditComponent implements OnInit {
 
   constructor(
     private userEditService: UserEditService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.tempWeekday = 0;
     this.tempTimeRange = ['','']
@@ -26,11 +30,35 @@ export class UserEditComponent implements OnInit {
 
   ngOnInit() {
     const vm = this;
+    this.authService.getUsingUser()
+      .subscribe({
+        next(data) {vm.usingUser = data;},
+        error(err) {console.error(err);},
+        complete() { console.log('usingUser: ', vm.usingUser);}
+      });
     this.route.paramMap.subscribe(params => {
       this.userID = this.route.snapshot.params.id;
       this.userEditService.getUserByIO(this.userID)
         .subscribe({
-          next(data) { vm.user = data[0]; },
+          next(data) {
+              if(data){
+                vm.user = data[0];
+              } else{
+                vm.user = {
+                  _id: undefined,
+                  availability: [undefined],
+                  email: "",
+                  fname: "",
+                  lname: "",
+                  password: "",
+                  preferred_shifts: 0,
+                  shift_types: [undefined],
+                  token: "",
+                  tenant: vm.usingUser.tenant,
+                  role: UserRole.BASIC
+                }
+              }
+            },
           error(err) { console.error(err); },
           complete() { console.log(vm.user)}
         });
