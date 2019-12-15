@@ -38,6 +38,23 @@ export class UserListComponent implements OnInit {
       });
   }
 
+  deleteUser(userID) {
+    const vm = this;
+    this.userListService.deleteUser(userID)
+      .subscribe({
+        next(data) { console.log(data);},
+        error(err) { console.error(err);},
+        complete() {
+          vm.userListService.getUsers()
+            .subscribe({
+              next(data) { vm.users = data; },
+              error(err) { console.error(err); },
+              complete() { console.log('users: ', vm.users)}
+            });
+        }
+      });
+  }
+
   getAvailabilityWeekdaysArr(availability) {
     return availability.map(obj => (obj.weekday));
   }

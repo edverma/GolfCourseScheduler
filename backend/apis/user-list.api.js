@@ -11,5 +11,15 @@ module.exports = {
                    res.end(users);
                })
         });
+    },
+
+    deleteUser: function(app) {
+        app.get('/api/users/delete/:id', ( req, res ) => {
+           User.deleteOne({_id: req.params.id}, (err) => {
+               console.log('req.params._id: ', req.params._id);
+              if(err) res.send(false);
+              else res.send(true);
+           });
+        });
     }
 };

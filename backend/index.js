@@ -22,6 +22,7 @@ setScheduleAPI.postRequirements(app);
 scheduleAPI.getSchedule(app);
 scheduleAPI.getEmployees(app);
 userListAPI.getUsers(app);
+userListAPI.deleteUser(app);
 userEditAPI.getUserById(app);
 userEditAPI.saveUser(app);
 sessionAPI.login(app);

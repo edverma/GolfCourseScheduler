@@ -21,4 +21,8 @@ export class UserListService {
   getUsers() {
     return this.http.get<User[]>(serviceAddress.concat(''), httpOptions);
   }
+
+  deleteUser(userID) {
+    return this.http.get<Boolean>(serviceAddress.concat('/delete/').concat(userID), httpOptions);
+  }
 }

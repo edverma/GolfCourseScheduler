@@ -17,7 +17,7 @@ export class UserEditService {
 
   constructor(private http: HttpClient) { }
 
-  getUserByIO( userID ) {
+  getUserByID( userID ) {
     return this.http.get<User>(serviceAddress.concat('/').concat(userID), httpOptions);
   }
 

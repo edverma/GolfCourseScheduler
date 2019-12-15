@@ -54,7 +54,7 @@ export class UserEditComponent implements OnInit {
       });
     this.route.paramMap.subscribe(params => {
       this.userID = this.route.snapshot.params.id;
-      this.userEditService.getUserByIO(this.userID)
+      this.userEditService.getUserByID(this.userID)
         .subscribe({
           next(data) {
               if(data){
