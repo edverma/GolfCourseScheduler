@@ -40,4 +40,7 @@ export class User {
   shift_types: [ShiftType];
   preferred_shifts: Number;
   availability: [Availability];
+  email: string;
+  password: string;
+  token: string;
 }

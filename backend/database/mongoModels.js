@@ -38,8 +38,13 @@ let userSchema = new Schema({
     role: String,
     shift_types: [String],
     preferred_shifts: Number,
-    availability: [availabilitySchema]
+    availability: [availabilitySchema],
+    email: String,
+    password: String,
+    token: String
 });
+
+
 
 class MongoModels {
     constructor() {

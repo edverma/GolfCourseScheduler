@@ -22,5 +22,8 @@
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "include": [
+    "./client/node_modules/@ngrx/effects/index.ts"
+  ]
 }

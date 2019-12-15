@@ -6,14 +6,16 @@ import { SetScheduleComponent } from '../components/set-schedule/set-schedule.co
 import { ScheduleComponent } from '../components/schedule/schedule.component';
 import {UserListComponent} from "../components/user-list/user-list.component";
 import {UserEditComponent} from "../components/user-edit/user-edit.component";
+import {LoginComponent} from "../components/login/login.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'set-schedule', pathMatch: 'full' },
+  { path: '', redirectTo: 'schedule', pathMatch: 'full' },
   { path: 'heading', component: HeadingComponent },
   { path: 'set-schedule', component: SetScheduleComponent },
   { path: 'schedule', component: ScheduleComponent },
   { path: 'users', component: UserListComponent},
-  { path: 'user-edit/:id', component: UserEditComponent}
+  { path: 'user-edit/:id', component: UserEditComponent},
+  { path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

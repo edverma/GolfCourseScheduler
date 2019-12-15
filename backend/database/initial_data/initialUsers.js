@@ -8,6 +8,8 @@ module.exports = [
         fname: "test",
         lname: "tester",
         role: UserRole.BASIC,
+        email: 'edverma+tester@gmail.com',
+        password: 'password',
         shift_types: [
             ShiftType.CARTS,
             ShiftType.RANGE,
@@ -72,6 +74,8 @@ module.exports = [
             ShiftType.SHOP
         ],
         preferred_shifts: 4,
+        email: 'edverma+griffin@gmail.com',
+        password: 'password',
         availability: [
             {
                 weekday: 0,
