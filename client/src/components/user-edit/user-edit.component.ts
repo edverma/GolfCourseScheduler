@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {User, Availability} from "../../clientModels";
 import {UserEditService} from "../../services/user-edit.service";
 import {AuthService} from "../../services/auth.service";
-import {UserRole} from "../../../../enums.js";
+import {UserRole, ShiftType} from "../../../../enums.js";
 
 @Component({
   selector: 'app-user-edit',
@@ -46,7 +46,7 @@ export class UserEditComponent implements OnInit {
           lname: "",
           password: "",
           preferred_shifts: 0,
-          shift_types: [undefined],
+          shift_types: [ShiftType.CARTS],
           token: "",
           tenant: vm.usingUser.tenant,
           role: vm.basic
