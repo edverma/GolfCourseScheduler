@@ -36,14 +36,14 @@ export class ScheduleComponent implements OnInit {
         error(err) { console.error(err); },
         complete() {
           vm.setColumnDefs();
-        }
-      });
-    this.scheduleService.getEmployees()
-      .subscribe({
-        next(data) { vm.employees = data; },
-        error(err) { console.error(err); },
-        complete() {
-          vm.setRowData();
+          vm.scheduleService.getEmployees()
+            .subscribe({
+              next(data) { vm.employees = data; },
+              error(err) { console.error(err); },
+              complete() {
+                vm.setRowData();
+              }
+            });
         }
       });
   }
