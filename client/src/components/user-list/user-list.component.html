@@ -1,9 +1,12 @@
 <navbar></navbar>
 
 <div>
-  <a [routerLink]="['/user-edit', '']">
-    <button class="btn">Create New User</button>
-  </a>
+  <div class="row pb-3 ml-4">
+    <a class="col-2" [routerLink]="['/user-edit', '']">
+      <button class="btn">Create New User</button>
+    </a>
+    <h2 class="col-10">Employee Info</h2>
+  </div>
   <table class="table">
     <tr>
       <th>Name</th>
@@ -26,13 +29,13 @@
       </td>
       <td>
         <a [routerLink]="['/user-edit',user._id]">
-          <button class="btn">
-            Edit
+          <button class="btn mr-3" ngbTooltip="Edit" tooltipClass="tooltip">
+            <fa-icon [icon]="faEdit"></fa-icon>
           </button>
         </a>
         <a (click)="deleteUser(user._id)">
-          <button class="btn">
-            Delete
+          <button class="btn" ngbTooltip="Delete" tooltipClass="tooltip">
+            <fa-icon [icon]="faTrash"></fa-icon>
           </button>
         </a>
       </td>

@@ -11,7 +11,7 @@ import { User } from '../../clientModels';
   selector: 'navbar',
   templateUrl: './navbar.component.html',
   //TODO: fix the way this css is imported so it can be imported globally
-  styleUrls: ['../app/app.component.css']
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
   usingUser: User;
@@ -19,8 +19,8 @@ export class NavbarComponent implements OnInit {
   router: Router;
   getState: Observable<any>;
   isAuthenticated: false;
-  user = null;
-  errorMessage = null;
+  user: null;
+  errorMessage: null;
 
 
   constructor(

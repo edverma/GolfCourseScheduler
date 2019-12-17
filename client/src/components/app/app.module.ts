@@ -9,6 +9,7 @@ import { AuthEffects } from '../../store/effects/auth.effects';
 import {AuthGuardService} from "../../services/auth-guard.service";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from '../../routing/routing.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
@@ -43,6 +44,7 @@ import {
         HttpClientModule,
         NgbModule,
         AgGridModule,
+        FontAwesomeModule,
         EffectsModule.forRoot([AuthEffects]),
         StoreModule.forRoot(reducers, {}),
     ],

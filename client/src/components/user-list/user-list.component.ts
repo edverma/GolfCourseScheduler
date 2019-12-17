@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../clientModels";
 import {UserListService} from "../../services/user-list.service";
 import {AuthService} from "../../services/auth.service";
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-list',
@@ -16,6 +17,8 @@ export class UserListComponent implements OnInit {
     { key: 'lname', sortable: true, sortDirection: 'desc' },
     { key: 'role', sortable: true, sortDirection: 'desc' }
   ];
+  faEdit = faEdit;
+  faTrash = faTrash;
 
   constructor(
     private userListService: UserListService,
