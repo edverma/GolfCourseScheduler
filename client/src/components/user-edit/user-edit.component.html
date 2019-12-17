@@ -38,9 +38,11 @@
     </span>
     <div *ngFor="let availability of user.availability">
       <div *ngFor="let time_range of availability.time_ranges, let timeRangeIndex=index">
-        <button class="btn" (click)="removeAvailability(availability.weekday, timeRangeIndex)">Remove</button>
-        {{dayOfWeekAsString(availability.weekday)}}
-        Start Time: {{time_range[0]}} End Time: {{time_range[1]}}
+        <div *ngIf="time_range[0] != null">
+          <button class="btn" (click)="removeAvailability(availability.weekday, timeRangeIndex)">Remove</button>
+          {{dayOfWeekAsString(availability.weekday)}}
+          Start Time: {{time_range[0]}} End Time: {{time_range[1]}}
+        </div>
       </div>
     </div>
   </div>
