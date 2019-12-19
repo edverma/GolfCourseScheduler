@@ -1,0 +1,21 @@
+{
+  "name": "golfcoursescheduler",
+  "version": "1.0.0",
+  "description": "A web application for golf course managers to effectively and efficiently create their employees' weekly schedules.",
+  "main": "enums.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edverma/GolfCourseScheduler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edverma/GolfCourseScheduler/issues"
+  },
+  "homepage": "https://github.com/edverma/GolfCourseScheduler#readme"
+}
