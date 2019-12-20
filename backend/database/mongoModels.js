@@ -41,6 +41,7 @@ let userSchema = new Schema({
     availability: [availabilitySchema],
     gender: String,
     email: String,
+    gender: String,
     password: String,
     token: String
 });

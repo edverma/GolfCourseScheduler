@@ -1,4 +1,4 @@
-import {Tenant, ShiftType, ShiftTime, UserRole, UserType} from "../../enums.js";
+import {Tenant, ShiftType, ShiftTime, UserRole, UserType, Gender} from "../../enums.js";
 
 export class TenantShift {
   tenant: Tenant;
@@ -37,6 +37,7 @@ export class User {
   fname: string;
   lname: string;
   role: UserRole;
+  gender: Gender;
   shift_types: [ShiftType];
   preferred_shifts: Number;
   availability: [Availability];
