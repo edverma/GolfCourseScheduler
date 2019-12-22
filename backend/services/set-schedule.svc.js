@@ -47,7 +47,7 @@ module.exports = {
     },
 
     getAvailableEmployees ( weekRequirements, shift, callback ) {
-        this.getEmployeesWhoseTimeMatches( shift.type, shift.start_datetime, shift.end_datetime, availableEmployees => {
+        this.getEmployeesWhoseTimeMatches( shift.shift.type, shift.start_datetime, shift.end_datetime, availableEmployees => {
             this.removeAlreadyScheduledEmployees( weekRequirements, availableEmployees, shift.start_datetime, availableEmployees => {
                 callback(availableEmployees);
             });
@@ -57,13 +57,14 @@ module.exports = {
     getEmployeesWhoseTimeMatches( shiftType, start_datetime, end_datetime, callback ) {
         start_datetime = new Date( start_datetime );
         end_datetime = new Date( end_datetime );
-        const matchQuery = {
-            "shiftTypes": shiftType,
-            "availability.weekday": start_datetime.getDay()
-        };
 
         User.aggregate([
-            { $match: matchQuery },
+            { $match: {
+                $and: [
+                    {"shift_types": shiftType},
+                    {"availability.weekday": start_datetime.getDay()}
+                ]
+            }},
             { $unwind: "$availability" },
             { $unwind: "$availability.time_ranges" },
             {
