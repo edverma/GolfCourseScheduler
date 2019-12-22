@@ -43,5 +43,6 @@ export class User {
   availability: [Availability];
   email: string;
   password: string;
+  order: number;
   token: string;
 }

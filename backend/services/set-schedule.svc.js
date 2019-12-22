@@ -133,7 +133,6 @@ module.exports = {
     },
 
     chooseBestFit ( weekRequirements, shift, availableEmployees, callback ) {
-        //console.log(availableEmployees);
         let bestFitEmployee = availableEmployees[Math.floor(Math.random() * Math.floor(availableEmployees.length))];
         callback(bestFitEmployee);
     }

@@ -18,7 +18,7 @@ module.exports = {
     //add role query here
     getEmployees: function(app){
         app.get('/api/schedule/employees', ( req, res ) => {
-            User.find({tenant: Tenant.UGA}).exec(
+            User.find({tenant: Tenant.UGA}).sort({order: 1}).exec(
                 (err, employees) => {
                     if (err) { console.error(err); return; }
                     employees = JSON.stringify(employees);
