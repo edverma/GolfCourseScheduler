@@ -84,6 +84,7 @@ module.exports = {
                 }
             }
         ],(err, users) => {
+            if (err != null) { console.error(err); return;}
             let woundUsers = [];
             for ( let i = 0; i < users.length; i++ ){
                 if ( users[i+1] === undefined || users[i]._id.toString().localeCompare(users[i+1]._id.toString()) != 0 ) {

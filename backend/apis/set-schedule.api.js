@@ -1,8 +1,4 @@
-const _ = require('underscore');
-const db = require('../database/database.js');
 const ScheduleShift = require('../database/mongoModels.js').Models.ScheduleShift;
-const ScheduleRequirementsImproved = require('../database/mongoModels.js').Models.ScheduleRequirementsImproved;
-const User = require('../database/mongoModels.js').Models.User;
 const svc = require('../services/set-schedule.svc');
 
 module.exports = {
