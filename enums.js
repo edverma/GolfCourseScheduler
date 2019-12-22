@@ -20,6 +20,13 @@ module.exports = {
 
     UserRole: {
         BASIC: 'Basic',
+        MANAGER: 'Manager',
         ADMIN: 'Admin'
     },
+    Gender: {
+      MALE: 'M', 
+      FEMALE: 'F',
+      NONBINARY: 'N'
+    },
+    
 };

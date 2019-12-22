@@ -8,6 +8,7 @@ module.exports = {
                (err, users) => {
                    if (err) { console.error(err); return; }
                    users = JSON.stringify(users);
+                   console.log(users)
                    res.end(users);
                })
         });

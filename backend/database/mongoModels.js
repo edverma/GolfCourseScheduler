@@ -39,7 +39,9 @@ let userSchema = new Schema({
     shift_types: [String],
     preferred_shifts: Number,
     availability: [availabilitySchema],
+    gender: String,
     email: String,
+    gender: String,
     password: String,
     token: String
 });

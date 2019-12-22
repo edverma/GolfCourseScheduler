@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {User, Availability} from "../../clientModels";
 import {UserEditService} from "../../services/user-edit.service";
 import {AuthService} from "../../services/auth.service";
-import {UserRole, ShiftType} from "../../../../enums.js";
+import {UserRole, ShiftType, Gender} from "../../../../enums.js";
 
 @Component({
   selector: 'app-user-edit',
@@ -43,6 +43,7 @@ export class UserEditComponent implements OnInit {
           availability: [{weekday: undefined, time_ranges: [[]]}],
           email: "",
           fname: "",
+          gender: Gender.NONBINARY,
           lname: "",
           password: "",
           preferred_shifts: 0,
