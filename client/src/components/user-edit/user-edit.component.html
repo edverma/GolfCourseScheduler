@@ -12,15 +12,39 @@
     <input type="text" [(ngModel)]="user.lname">
   </div>
   <div>
+    <label>Gender:</label>
+    <select [(ngModel)]="user.gender">
+      <option *ngFor="let gender of genderArr" [value]="gender">
+        {{gender}}
+      </option>
+    </select>
+  </div>
+  <div>
     <label>Email:</label>
     <input type="text" [(ngModel)]="user.email">
   </div>
   <div>
     <label>User Role:</label>
     <select [(ngModel)]="user.role">
-      <option [value]="basic">{{basic}}</option>
-      <option [value]="admin">{{admin}}</option>
+      <option *ngFor="let userRole of userRoleArr" [value]="userRole">
+        {{userRole}}
+      </option>
     </select>
+  </div>
+  <div>
+    <label>Shift Types:</label>
+    <span>
+      <button class="btn" (click)="addShiftType()">Add</button>
+      <select [(ngModel)]="tempShiftType">
+        <option *ngFor="let shiftType of shiftTypeArr" [value]="shiftType">
+          {{shiftType}}
+        </option>
+      </select>
+    </span>
+    <div *ngFor="let shiftType of user.shift_types">
+      <button class="btn" (click)="removeShiftType(shiftType)">Remove</button>
+      {{shiftType}}
+    </div>
   </div>
   <div>
     <label>Availability:</label>

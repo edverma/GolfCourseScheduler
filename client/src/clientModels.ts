@@ -44,5 +44,5 @@ export class User {
   email: string;
   password: string;
   order: number;
-  token: string;
+  token: number;
 }

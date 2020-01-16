@@ -44,7 +44,7 @@ let userSchema = new Schema({
     gender: String,
     password: String,
     order: Number,
-    token: String
+    token: Number
 });
 
 

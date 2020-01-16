@@ -19,16 +19,38 @@ export class UserEditComponent implements OnInit {
   user: User;
   tempWeekday: number;
   tempTimeRange:[string, string];
+  tempShiftType: string;
+  userRoleArr: string[];
+  shiftTypeArr: string[];
+  genderArr: string[];
 
   constructor(
     private userEditService: UserEditService,
     private route: ActivatedRoute,
+    private router: Router,
     private authService: AuthService
   ) {
     this.tempWeekday = 0;
     this.tempTimeRange = ['',''];
-    this.basic = UserRole.BASIC;
-    this.admin = UserRole.ADMIN;
+    this.tempShiftType = "";
+    this.userRoleArr = Object.values(UserRole);
+    this.shiftTypeArr = Object.values(ShiftType);
+    this.genderArr = Object.values(Gender);
+    this.user = {
+      _id: null,
+      availability: [{weekday: undefined, time_ranges: [[]]}],
+      email: "",
+      fname: "",
+      gender: Gender.NONBINARY,
+      lname: "",
+      password: "",
+      preferred_shifts: 0,
+      shift_types: [ShiftType.CARTS],
+      token: Math.random() * 10000,
+      tenant: -1,
+      role: UserRole.BASIC,
+      order: 0
+    };
   }
 
 
@@ -38,31 +60,18 @@ export class UserEditComponent implements OnInit {
       .subscribe({
         next(data) {vm.usingUser = data;},
         error(err) {console.error(err);},
-        complete() { vm.user = {
-          _id: null,
-          availability: [{weekday: undefined, time_ranges: [[]]}],
-          email: "",
-          fname: "",
-          gender: Gender.NONBINARY,
-          lname: "",
-          password: "",
-          preferred_shifts: 0,
-          shift_types: [ShiftType.CARTS],
-          token: "",
-          tenant: vm.usingUser.tenant,
-          role: vm.basic
-        };}
+        complete() {
+          vm.user.tenant = vm.usingUser.tenant;
+        }
       });
     this.route.paramMap.subscribe(params => {
       this.userID = this.route.snapshot.params.id;
       this.userEditService.getUserByID(this.userID)
         .subscribe({
           next(data) {
-              if(data){
-                vm.user = data[0];
-              }
+              vm.user = data[0];
             },
-          error(err) { console.error(err); },
+          error(err) {  },
           complete() { console.log(vm.user)}
         });
     });
@@ -78,8 +87,23 @@ export class UserEditComponent implements OnInit {
       .subscribe({
         next(data) { console.log(data);},
         error(err) { console.error(err);},
-        complete() { }
+        complete() {
+          this.router.navigatByUrl('/user-list');
+        }
       });
+  }
+
+  removeShiftType(shiftType) {
+    let index = this.user.shift_types.indexOf(shiftType)
+    if ( index != -1 ) {
+      this.user.shift_types.splice(index, 1);
+    }
+  }
+
+  addShiftType() {
+    if ( this.tempShiftType != "" && ! this.user.shift_types.includes(this.tempShiftType) ) {
+      this.user.shift_types.push(this.tempShiftType);
+    }
   }
 
   removeAvailability(weekday, timeRangeIndex) {
