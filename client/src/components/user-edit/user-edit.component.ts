@@ -82,13 +82,14 @@ export class UserEditComponent implements OnInit {
   }
 
   saveUser() {
+	const vm = this;
     let userJSONString = JSON.stringify(this.user)
     this.userEditService.saveUser(userJSONString)
       .subscribe({
         next(data) { console.log(data);},
         error(err) { console.error(err);},
         complete() {
-          this.router.navigatByUrl('/user-list');
+          vm.router.navigateByUrl('/users');
         }
       });
   }

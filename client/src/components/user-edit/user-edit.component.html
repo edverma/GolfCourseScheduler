@@ -1,35 +1,34 @@
 <navbar></navbar>
 <div>
   <h1 class="text-center">{{user.fname}} {{user.lname}}</h1>
+  
+  <hr>
 
-  <div>
-    <label>First Name:</label>
-    <input type="text" [(ngModel)]="user.fname">
+  <div class="flex-row">
+    <div>
+      <label>First Name:</label>
+      <input type="text" [(ngModel)]="user.fname">
+	  <label>Last Name:</label>
+      <input type="text" [(ngModel)]="user.lname">
+	  <label>Gender:</label>
+	  <select [(ngModel)]="user.gender">
+	    <option *ngFor="let gender of genderArr" [value]="gender">
+		  {{gender}}
+	    </option>
+	  </select>
+	  <label>Email:</label>
+	  <input type="text" [(ngModel)]="user.email">
+	  <label>User Role:</label>
+	  <select [(ngModel)]="user.role">
+		<option *ngFor="let userRole of userRoleArr" [value]="userRole">
+		  {{userRole}}
+		</option>
+	  </select>
+	</div>
   </div>
-  <div>
-    <label>Last Name:</label>
-    <input type="text" [(ngModel)]="user.lname">
-  </div>
-  <div>
-    <label>Gender:</label>
-    <select [(ngModel)]="user.gender">
-      <option *ngFor="let gender of genderArr" [value]="gender">
-        {{gender}}
-      </option>
-    </select>
-  </div>
-  <div>
-    <label>Email:</label>
-    <input type="text" [(ngModel)]="user.email">
-  </div>
-  <div>
-    <label>User Role:</label>
-    <select [(ngModel)]="user.role">
-      <option *ngFor="let userRole of userRoleArr" [value]="userRole">
-        {{userRole}}
-      </option>
-    </select>
-  </div>
+ 
+ <hr>
+  
   <div>
     <label>Shift Types:</label>
     <span>
@@ -40,11 +39,14 @@
         </option>
       </select>
     </span>
-    <div *ngFor="let shiftType of user.shift_types">
+    <div *ngFor="let shiftType of user.shift_types" class="user-edit-list">
       <button class="btn" (click)="removeShiftType(shiftType)">Remove</button>
       {{shiftType}}
     </div>
   </div>
+  
+  <hr>
+  
   <div>
     <label>Availability:</label>
     <span>
@@ -59,7 +61,7 @@
         <label>End Time:</label>
         <input type="time" [(ngModel)]="tempTimeRange[1]">
     </span>
-    <div *ngFor="let availability of user.availability">
+    <div *ngFor="let availability of user.availability" class="user-edit-list">
       <div *ngFor="let time_range of availability.time_ranges, let timeRangeIndex=index">
         <div *ngIf="time_range[0] != null">
           <button class="btn" (click)="removeAvailability(availability.weekday, timeRangeIndex)">Remove</button>
@@ -69,7 +71,11 @@
       </div>
     </div>
   </div>
+  
+  <br><hr>
+
   <div>
-    <button class="btn" (click)="saveUser()">Save</button>
+    <button class="btn save-btn" (click)="saveUser()">Save</button>
   </div>
+  
 </div>
