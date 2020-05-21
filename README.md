@@ -11,5 +11,5 @@ Setup
 3) npm i
 4) npm install -g nodemon
 5) nodemon ./backend/index.js
-6) ng serve ./client
-7) npm install -g @angular/cli
+6) npm install -g @angular/cli
+7) ng serve ./client
