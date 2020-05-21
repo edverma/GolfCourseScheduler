@@ -2,9 +2,27 @@ body {
   background-color:white;
 }
 
+a{
+  margin:10px;
+  background-color:#E4002B;
+  color:rgb(255, 255, 255);
+}
+
+.active, .btn-block:hover{
+  background-color:black;
+  border-color:black;
+  color:white;
+}
+
+.btn-block{
+  margin:10px;
+  width:200px;
+  font-size:20px;
+}
+
 .uga-logo-img{
-  height:25vh;
-  width:40vh;
+  height:100px;
+  width:160px;
 }
 
 h1{
@@ -17,21 +35,4 @@ h1{
 
 .title{
   text-align:center;
-  padding-right:10%;
-}
-
-.bar{
-  text-align:center;
-  margin:auto;
-}
-
-.active{
-  background-color:#000000;
-  border-color:#000000;
-  color:rgb(255,255,255);
-}
-
-.btn-block{
-  display:inline-block;
-  font-size:20px;
 }

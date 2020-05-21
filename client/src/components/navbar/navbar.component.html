@@ -9,34 +9,29 @@
 
 <hr>
 
-<div class="row bar">
-  <div class="col-1"></div>
-  <div class="col-2">
-    <nav>
-      <a class="btn btn-block" role="button" [routerLinkActive]="['active']" routerLink = "/schedule">Schedule</a>
-    </nav>
-  </div>
-  <div class="col-2">
-    <nav>
-      <a class="btn btn-block" role="button" [routerLinkActive]="['active']" routerLink = "/users">Employee Info</a>
-    </nav>
-  </div>
-  <div class="col-2">
-    <nav>
-      <a class="btn btn-block" role="button" [routerLinkActive]="['active']" routerLink = "/admin-rto-page">Requests</a>
-    </nav>
-  </div>
-  <div class="col-2">
-    <nav>
-      <a class="btn btn-block" role="button" [routerLinkActive]="['active']" routerLink = "/set-schedule">Generate Schedule</a>
-    </nav>
-  </div>
-  <div class="col-2">
-    <nav>
-      <a class="btn btn-block" role="button" routerLink="#" (click)="logout()">Logout</a>
-    </nav>
-  </div>
-  <div class="col-1"></div>
-</div>
-
+	<nav class="navbar navbar-expand-sm">
+	  <div class="container-fluid">
+		  <ul class="nav navbar-nav">
+				<li>
+				  <button class="btn btn-block" [routerLinkActive]="['active']" routerLink = "/schedule">Schedule</button>
+				</li>
+				<li>
+				  <button class="btn btn-block" [routerLinkActive]="['active']" routerLink = "/users">Employee Info</button>
+				</li>
+			<!--
+			  <div class="col-2">
+				<nav>
+				  <a class="btn btn-block" role="button" [routerLinkActive]="['active']" routerLink = "/admin-rto-page">Requests</a>
+				</nav>
+			  </div>
+			-->
+				<li>
+				  <button class="btn btn-block" [routerLinkActive]="['active']" routerLink = "/set-schedule">Generate Schedule</button>
+				</li>
+				<li>
+				  <button class="btn btn-block" routerLink="#" (click)="logout()">Logout</button>
+				</li>
+		  </ul>
+	  </div>
+	</nav>
 <hr>
