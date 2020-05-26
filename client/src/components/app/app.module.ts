@@ -19,6 +19,7 @@ import {ScheduleComponent} from '../schedule/schedule.component';
 import {UserListComponent} from "../user-list/user-list.component";
 import {UserEditComponent} from "../user-edit/user-edit.component";
 import {LoginComponent} from "../login/login.component";
+import {TopComponent} from "../top/top.component";
 import {StatusComponent} from "../status/status.component";
 import { AuthService } from '../../services/auth.service';
 import { reducers } from '../../store/app.states';
@@ -35,7 +36,8 @@ import {
     UserListComponent,
     UserEditComponent,
     LoginComponent,
-    StatusComponent
+    StatusComponent,
+	TopComponent
   ],
     imports: [
         BrowserModule,
